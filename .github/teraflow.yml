@@ -12,10 +12,29 @@ confirmation:
 ai:
   default_provider: openai
 
+assignments:
+  requirements:
+    provider: openai
+    model: gpt-4o-mini
+  review:
+    provider: openai
+    model: gpt-4o-mini
+  implement:
+    provider: openai
+    model: gpt-4o-mini
+  ci-fix:
+    provider: openai
+    model: gpt-4o-mini
+  conflict:
+    provider: openai
+    model: gpt-4o-mini
+  incident:
+    provider: openai
+    model: gpt-4o-mini
+  maintenance:
+    provider: openai
+    model: gpt-4o-mini
+
 harness:
   score_threshold: 70
   auto_issue: false
-
-agent:
-  provider: openai-codex
-  model: gpt-5.3-codex
