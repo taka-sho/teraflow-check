@@ -1,0 +1,63 @@
+title: "🏗️ 02-Design"
+body:
+  - type: dropdown
+    id: design-scope
+    attributes:
+      label: "設計スコープ"
+      description: "議論する設計の範囲を選択してください"
+      options:
+        - "アーキテクチャ設計"
+        - "方式設計"
+        - "詳細設計"
+        - "DB設計"
+        - "セキュリティ設計"
+        - "インターフェース設計"
+        - "移行設計"
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: "背景・コンテキスト"
+      description: "この設計議論が必要になった背景と解決すべき課題を記述してください"
+      placeholder: "例: マイクロサービス化に伴い、サービス間通信の方式を決定する必要がある"
+    validations:
+      required: true
+  - type: textarea
+    id: options
+    attributes:
+      label: "選択肢と比較"
+      description: "検討した選択肢を比較してください（案A/案B形式推奨）"
+      placeholder: "案A: REST API\n- メリット: シンプル\n- デメリット: リアルタイム性に欠ける\n\n案B: gRPC\n- メリット: 高パフォーマンス\n- デメリット: 学習コスト高"
+    validations:
+      required: true
+  - type: textarea
+    id: recommendation
+    attributes:
+      label: "推奨案と根拠"
+      description: "推奨する設計案とその理由を記述してください"
+      placeholder: "案Aを推奨。理由: チームの習熟度とシステム規模を考慮すると..."
+    validations:
+      required: true
+  - type: checkboxes
+    id: quality-characteristics
+    attributes:
+      label: "影響を受ける品質特性（ISO 25010）"
+      description: "この設計が影響する品質特性を選択してください"
+      options:
+        - label: "機能適合性"
+        - label: "性能効率性"
+        - label: "互換性"
+        - label: "使用性"
+        - label: "信頼性"
+        - label: "セキュリティ"
+        - label: "保守性"
+        - label: "移植性"
+  - type: textarea
+    id: risks
+    attributes:
+      label: "リスク・トレードオフ"
+      description: "この設計判断に伴うリスクやトレードオフを記述してください"
+      placeholder: "例: パフォーマンスを優先した結果、可読性が低下する可能性がある"
+    validations:
+      required: false
