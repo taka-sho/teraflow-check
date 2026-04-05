@@ -2,3 +2,4 @@
 {"type":"feat","message":"sync req-agent dialogue mode workflow","timestamp":"2026-04-05T15:06:48Z"}
 {"type":"fix","message":"discussion comment replies use replyToId","timestamp":"2026-04-05T18:58:41Z"}
 {"type":"fix","message":"add ACK instant reply + update flow for discussions","timestamp":"2026-04-05T19:00:52Z"}
+{"type":"fix","message":"move ACK post to immediately after checkout","timestamp":"2026-04-05T19:06:49Z"}
