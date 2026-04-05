@@ -1,2 +1,3 @@
 {"type":"fix","message":"update teraflow.yml to assignments format","timestamp":"2026-04-05T14:28:01Z"}
 {"type":"feat","message":"sync req-agent dialogue mode workflow","timestamp":"2026-04-05T15:06:48Z"}
+{"type":"fix","message":"discussion comment replies use replyToId","timestamp":"2026-04-05T18:58:41Z"}
