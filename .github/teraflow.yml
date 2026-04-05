@@ -10,7 +10,7 @@ confirmation:
   req_trigger: "要求確定"
 
 ai:
-  default_provider: anthropic
+  default_provider: openai
 
 harness:
   score_threshold: 70
