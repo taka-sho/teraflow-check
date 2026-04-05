@@ -1,0 +1,24 @@
+project:
+    name: honya-flow
+lifecycle:
+    current_stage: initial_development
+phases:
+    current: requirements
+slcp_jcf:
+    processes:
+        - name: 企画プロセス
+          status: not_started
+        - name: 要件定義プロセス
+          status: not_started
+        - name: システム設計プロセス
+          status: not_started
+        - name: ソフトウェア設計プロセス
+          status: not_started
+        - name: ソフトウェア構築プロセス
+          status: not_started
+        - name: ソフトウェアテストプロセス
+          status: not_started
+        - name: システム結合テスト
+          status: not_started
+        - name: 運用・保守プロセス
+          status: not_started
