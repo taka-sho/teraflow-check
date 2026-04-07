@@ -1,0 +1,9 @@
+version: "1"
+generated_at: 2026-04-07T23:40:07.089784586Z
+entries:
+    - node_id: 01-requirements
+      title: "\U0001F4CB 01-Requirements"
+      path: docs/Requirements/01-requirements.md
+      updated_at: 2026-04-07T23:40:07.088501247Z
+      content_hash: 7df89b9914985b591565c952425aab3ca94978c0fd897d2fbe606ca70f871265
+      summary_available: false
