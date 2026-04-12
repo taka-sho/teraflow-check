@@ -57,6 +57,21 @@ tree:
     discussion_title: '[E2E Test] E2E Discovery Test - 20260413_000342'
     assistant_comment: 要件探索の実行に失敗しました。
     latest_user_comment: 1a 2b 3a
+- id: dialogue.1776006370894
+  question: 要件探索の実行に失敗しました。
+  category: dialogue
+  status: answered
+  recommendation: ''
+  answer: 要求確定
+  resolved_by: user
+  resolved_at: '2026-04-12T15:06:10.894426+00:00'
+  depends_on: []
+  children: []
+  meta:
+    skill_mode: confirm
+    discussion_title: '[E2E Test] E2E Discovery Test - 20260413_000342'
+    assistant_comment: 要件探索の実行に失敗しました。
+    latest_user_comment: 要求確定
 summary:
   total: 0
   answered: 0
@@ -64,4 +79,4 @@ summary:
   skipped: 0
   blocked: 0
   progress_percent: 0
-updated_at: '2026-04-12T15:05:15.836499+00:00'
+updated_at: '2026-04-12T15:06:10.894435+00:00'
