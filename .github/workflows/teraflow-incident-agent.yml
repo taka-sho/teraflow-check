@@ -95,7 +95,7 @@ jobs:
         run: |
 
           set -e
-          go install "github.com/taka-sho/teraflow@v0.5.4"
+          go install "github.com/taka-sho/teraflow@v0.5.5"
 
       - name: Investigate incident
         id: investigate

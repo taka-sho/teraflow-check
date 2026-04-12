@@ -171,7 +171,7 @@ jobs:
             mkdir -p "$(go env GOPATH)/bin"
             ln -sf "$(pwd)/teraflow" "$(go env GOPATH)/bin/teraflow"
           else
-            go install "github.com/taka-sho/teraflow@v0.5.4"
+            go install "github.com/taka-sho/teraflow@v0.5.5"
             ln -sf "$(go env GOPATH)/bin/teraflow" ./teraflow
           fi
 
@@ -563,6 +563,7 @@ jobs:
           DELIM="TERAFLOW_OUTPUT_$(date +%s%N)"
           echo "output<<${DELIM}" >> "$GITHUB_OUTPUT"
           cat /tmp/discovery_comment.txt >> "$GITHUB_OUTPUT"
+          echo "" >> "$GITHUB_OUTPUT"
           echo "${DELIM}" >> "$GITHUB_OUTPUT"
 
       - name: Configure git identity
