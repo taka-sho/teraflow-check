@@ -1,0 +1,81 @@
+version: '1'
+discussion_number: 48
+title: 📋 01-Requirements
+created_at: '2026-04-12T12:39:58.476237+00:00'
+mode: sequential
+tree:
+- id: dialogue.1775997598476
+  question: 💬 AI壁打ち
+  category: dialogue
+  status: answered
+  recommendation: ''
+  answer: '### 要件種別
+
+
+    システム要件
+
+
+    ### 優先度
+
+
+    Must（必須）
+
+
+    ### 背景・目的
+
+
+    teraflowリリースに向けてteraflowの公式サイトを作成する．
+
+
+    ### 要件詳細
+
+
+    初めて使うチュートリアルから，複雑な利用をする人までを想定したサイトにする
+
+
+    ### 受け入れ条件
+
+
+    おまかせ
+
+
+    ### 関連ステークホルダー
+
+
+    - [X] PM（プロダクトマネージャー）
+
+    - [ ] 開発チーム
+
+    - [ ] QAチーム
+
+    - [ ] エンドユーザー
+
+    - [ ] 運用チーム
+
+    - [ ] セキュリティチーム
+
+
+    ### 制約・前提条件
+
+
+    _No response_'
+  resolved_by: user
+  resolved_at: '2026-04-12T12:39:58.476260+00:00'
+  depends_on: []
+  children: []
+  meta:
+    skill_mode: init
+    discussion_title: 📋 01-Requirements
+    assistant_comment: '💬 AI壁打ち
+
+
+      要件の背景や目的についてお伺いしたいです。teraflowの公式サイトは、どのような情報や機能を提供することで、ユーザーに役立つと考えていますか？また、特に重視したいポイントはありますか？チュートリアルから複雑な利用までを想定されているとのことですが、具体的にはどのような利用シーンを想定されていますか？'
+    latest_user_comment: ''
+summary:
+  total: 0
+  answered: 0
+  pending: 0
+  skipped: 0
+  blocked: 0
+  progress_percent: 0
+updated_at: '2026-04-12T12:39:58.476265+00:00'
