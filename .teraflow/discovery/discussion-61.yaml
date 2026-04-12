@@ -1,0 +1,29 @@
+version: '1'
+discussion_number: 61
+title: '[E2E Test] E2E Discovery Test - 20260413_004738'
+created_at: '2026-04-12T15:57:43.575249+00:00'
+mode: sequential
+tree:
+- id: dialogue.1776009463575
+  question: 要件探索の実行に失敗しました。
+  category: dialogue
+  status: answered
+  recommendation: ''
+  answer: 要求確定
+  resolved_by: user
+  resolved_at: '2026-04-12T15:57:43.575268+00:00'
+  depends_on: []
+  children: []
+  meta:
+    skill_mode: confirm
+    discussion_title: '[E2E Test] E2E Discovery Test - 20260413_004738'
+    assistant_comment: 要件探索の実行に失敗しました。
+    latest_user_comment: 要求確定
+summary:
+  total: 0
+  answered: 0
+  pending: 0
+  skipped: 0
+  blocked: 0
+  progress_percent: 0
+updated_at: '2026-04-12T15:57:43.575273+00:00'
