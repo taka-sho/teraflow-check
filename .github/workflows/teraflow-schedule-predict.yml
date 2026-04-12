@@ -38,7 +38,7 @@ jobs:
         run: |
 
           set -e
-          go install "github.com/taka-sho/teraflow@v0.5.5"
+          go install "github.com/taka-sho/teraflow@v0.5.6"
 
       - name: Pull latest state
         run: |
@@ -82,9 +82,11 @@ jobs:
             echo "deadline_changed=false" >> $GITHUB_OUTPUT
           fi
 
-          echo "schedule_json<<EOF" >> $GITHUB_OUTPUT
-          echo "$SCHEDULE_AFTER" >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
+          DELIM="TERAFLOW_SCHEDULE_JSON_$(date +%s%N)"
+          echo "schedule_json<<${DELIM}" >> "$GITHUB_OUTPUT"
+          echo "$SCHEDULE_AFTER" >> "$GITHUB_OUTPUT"
+          echo "" >> "$GITHUB_OUTPUT"
+          echo "${DELIM}" >> "$GITHUB_OUTPUT"
 
       - name: Commit schedule update
         run: |

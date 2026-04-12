@@ -108,7 +108,7 @@ jobs:
             mkdir -p "$(go env GOPATH)/bin"
             ln -sf "$(pwd)/teraflow" "$(go env GOPATH)/bin/teraflow"
           else
-            go install "github.com/taka-sho/teraflow@v0.5.5"
+            go install "github.com/taka-sho/teraflow@v0.5.6"
             ln -sf "$(go env GOPATH)/bin/teraflow" ./teraflow
           fi
 
@@ -167,10 +167,12 @@ jobs:
 
           OUTPUT=$(python3 -c "import json; print(json.load(open('/tmp/impl_result.json')).get('output',''))" 2>/dev/null || echo "実装生成失敗")
 
-          echo "success=$SUCCESS" >> $GITHUB_OUTPUT
-          echo "output<<EOF" >> $GITHUB_OUTPUT
-          echo "$OUTPUT" >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
+          echo "success=$SUCCESS" >> "$GITHUB_OUTPUT"
+          DELIM="TERAFLOW_OUTPUT_$(date +%s%N)"
+          echo "output<<${DELIM}" >> "$GITHUB_OUTPUT"
+          echo "$OUTPUT" >> "$GITHUB_OUTPUT"
+          echo "" >> "$GITHUB_OUTPUT"
+          echo "${DELIM}" >> "$GITHUB_OUTPUT"
 
       - name: Post implementation proposal as comment
         if: steps.check.outputs.has_key == 'true'

@@ -95,7 +95,7 @@ jobs:
         run: |
 
           set -e
-          go install "github.com/taka-sho/teraflow@v0.5.5"
+          go install "github.com/taka-sho/teraflow@v0.5.6"
 
       - name: Investigate incident
         id: investigate
@@ -128,9 +128,11 @@ jobs:
 
           OUTPUT=$(python3 -c "import json; print(json.load(open('/tmp/incident_result.json')).get('output',''))" 2>/dev/null || echo "調査失敗")
 
-          echo "output<<EOF" >> $GITHUB_OUTPUT
-          echo "$OUTPUT" >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
+          DELIM="TERAFLOW_OUTPUT_$(date +%s%N)"
+          echo "output<<${DELIM}" >> "$GITHUB_OUTPUT"
+          echo "$OUTPUT" >> "$GITHUB_OUTPUT"
+          echo "" >> "$GITHUB_OUTPUT"
+          echo "${DELIM}" >> "$GITHUB_OUTPUT"
 
       - name: Record incident and post analysis
         if: steps.check.outputs.has_key == 'true'
