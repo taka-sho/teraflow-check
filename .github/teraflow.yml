@@ -1,5 +1,5 @@
 version: "1"
-teraflow_version: v0.5.10
+teraflow_version: v0.5.11
 project:
     name: honya-flow
     description: ""

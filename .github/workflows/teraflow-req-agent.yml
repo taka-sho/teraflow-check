@@ -171,7 +171,7 @@ jobs:
             mkdir -p "$(go env GOPATH)/bin"
             ln -sf "$(pwd)/teraflow" "$(go env GOPATH)/bin/teraflow"
           else
-            go install "github.com/taka-sho/teraflow@v0.5.10"
+            go install "github.com/taka-sho/teraflow@v0.5.11"
             ln -sf "$(go env GOPATH)/bin/teraflow" ./teraflow
           fi
 
@@ -192,6 +192,13 @@ jobs:
                       author { login }
                       body
                       createdAt
+                      replies(last: 20) {
+                        nodes {
+                          author { login }
+                          body
+                          createdAt
+                        }
+                      }
                     }
                   }
                 }
@@ -212,13 +219,132 @@ jobs:
           lines.append(f"\n## 最初の投稿\n{discussion.get('body', '')}\n")
 
           comments = discussion.get('comments', {}).get('nodes', [])
-          if comments:
+          timeline = []
+          for c in comments:
+              timeline.append({
+                  'created_at': c.get('createdAt', ''),
+                  'author': c.get('author', {}).get('login', 'unknown'),
+                  'body': c.get('body', ''),
+              })
+              for r in c.get('replies', {}).get('nodes', []):
+                  timeline.append({
+                      'created_at': r.get('createdAt', ''),
+                      'author': r.get('author', {}).get('login', 'unknown'),
+                      'body': r.get('body', ''),
+                  })
+
+          if timeline:
               lines.append("## コメント履歴")
-              for c in comments:
-                  author = c.get('author', {}).get('login', 'unknown')
-                  lines.append(f"\n**{author}**: {c.get('body', '')}")
+              for entry in sorted(timeline, key=lambda x: x['created_at'] or ''):
+                  lines.append(f"\n**{entry['author']}**: {entry['body']}")
 
           print('\n'.join(lines))
+          PYEOF
+
+      - name: Generate doc context
+        if: steps.check.outputs.has_key == 'true' && steps.rbac_check.outputs.allowed != 'False'
+        run: |
+          set +e
+          DOC_CONTEXT_FILE=/tmp/doc_context.txt
+          : > "$DOC_CONTEXT_FILE"
+
+          INDEX_EXISTS=false
+          teraflow doc index --check-exists >/dev/null 2>&1
+          if [ $? -eq 0 ]; then
+            INDEX_EXISTS=true
+          fi
+
+          if [ "$INDEX_EXISTS" != "true" ]; then
+            for CANDIDATE in \
+              ".teraflow/discovery/doc-index.yaml" \
+              ".teraflow/doc-index.yaml" \
+              "doc-index.yaml"
+            do
+              if [ -f "$CANDIDATE" ]; then
+                INDEX_EXISTS=true
+                break
+              fi
+            done
+          fi
+
+          if [ "$INDEX_EXISTS" != "true" ]; then
+            echo "Doc index not found. Continue with empty doc context."
+            exit 0
+          fi
+
+          python3 - <<'PYEOF' > "$DOC_CONTEXT_FILE" || true
+          import os
+          import re
+          from pathlib import Path
+
+          import yaml
+
+          index_candidates = [
+              Path(".teraflow/discovery/doc-index.yaml"),
+              Path(".teraflow/doc-index.yaml"),
+              Path("doc-index.yaml"),
+          ]
+          index_path = next((p for p in index_candidates if p.exists()), None)
+          if not index_path:
+              raise SystemExit(0)
+
+          history_path = Path("/tmp/conversation_history.txt")
+          discussion = history_path.read_text(encoding="utf-8") if history_path.exists() else ""
+
+          with index_path.open(encoding="utf-8") as f:
+              data = yaml.safe_load(f) or {}
+          docs = data.get("docs") or []
+          if not isinstance(docs, list) or not docs:
+              raise SystemExit(0)
+
+          words = re.findall(r"[A-Za-z0-9_\-\u3040-\u30ff\u4e00-\u9fff]+", discussion.lower())
+          stop = {
+              "the", "and", "for", "with", "from", "this", "that", "what", "when", "where",
+              "have", "has", "you", "your", "about", "into", "while", "will", "shall", "could",
+              "should", "would", "is", "are", "was", "were", "been", "to", "of", "in", "on",
+          }
+          tokens = [w for w in words if len(w) >= 2 and w not in stop]
+
+          def score(doc):
+              fields = []
+              for key in ("title", "summary"):
+                  v = doc.get(key)
+                  if isinstance(v, str):
+                      fields.append(v.lower())
+              for key in ("categories", "keywords"):
+                  arr = doc.get(key)
+                  if isinstance(arr, list):
+                      fields.extend(str(x).lower() for x in arr if isinstance(x, str))
+              text = "\n".join(fields)
+              return sum(1 for t in tokens if t in text)
+
+          ranked = []
+          for doc in docs:
+              if not isinstance(doc, dict):
+                  continue
+              ranked.append((score(doc), doc))
+
+          ranked.sort(key=lambda item: (item[0], -int(item[1].get("total_tokens", 0) or 0)), reverse=True)
+          selected = [doc for sc, doc in ranked if sc > 0][:5]
+          if not selected:
+              selected = [doc for _, doc in ranked[:3]]
+
+          lines = []
+          for doc in selected:
+              path = str(doc.get("path", "")).strip()
+              title = str(doc.get("title", "")).strip()
+              summary = str(doc.get("summary", "")).strip()
+              if not path:
+                  continue
+              header = f"### {path}"
+              if title:
+                  header += f" - {title}"
+              lines.append(header)
+              if summary:
+                  lines.append(summary)
+              lines.append("")
+
+          print("\n".join(lines).strip())
           PYEOF
 
       - name: Determine response mode
@@ -226,9 +352,11 @@ jobs:
         id: mode
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COMMENT_BODY: ${{ github.event.comment.body }}
+          DISCUSSION_CATEGORY: ${{ github.event.discussion.category.name }}
         run: |
-          COMMENT="${{ github.event.comment.body }}"
-          CATEGORY="${{ github.event.discussion.category.name }}"
+          COMMENT="$COMMENT_BODY"
+          CATEGORY="$DISCUSSION_CATEGORY"
           LABELS=$(gh api graphql -f query='
             query($id: ID!) {
               node(id: $id) {
@@ -270,9 +398,11 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          MODE_OUTPUT: ${{ steps.mode.outputs.mode }}
+          COMMENT_BODY: ${{ github.event.comment.body }}
         run: |
-          MODE="${{ steps.mode.outputs.mode }}"
-          COMMENT="${{ github.event.comment.body }}"
+          MODE="$MODE_OUTPUT"
+          COMMENT="$COMMENT_BODY"
 
           cp /tmp/conversation_history.txt /tmp/req_input.txt
 
@@ -313,6 +443,7 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          MODE_OUTPUT: ${{ steps.mode.outputs.mode }}
           DISC_NUM: ${{ github.event.discussion.number }}
           DISC_TITLE: ${{ github.event.discussion.title }}
           DISC_BODY: ${{ github.event.discussion.body }}
@@ -321,6 +452,7 @@ jobs:
           set -e
           STATE_FILE=".teraflow/discovery/discussion-${DISC_NUM}.yaml"
           DRAFT_FILE=".teraflow/discovery/discussion-${DISC_NUM}-draft.md"
+          SUMMARY_FILE=".teraflow/discovery/discussion-${DISC_NUM}-summary.yaml"
           mkdir -p .teraflow/discovery
 
           if [ -f "$STATE_FILE" ]; then
@@ -328,7 +460,7 @@ jobs:
           else
             SKILL_MODE="init"
           fi
-          if [ "${{ steps.mode.outputs.mode }}" = "discovery-confirm" ]; then
+          if [ "$MODE_OUTPUT" = "discovery-confirm" ]; then
             SKILL_MODE="confirm"
           fi
           export SKILL_MODE
@@ -338,58 +470,67 @@ jobs:
           import yaml
 
           disc_num = os.environ.get("DISC_NUM", "")
-          state_path = f".teraflow/discovery/discussion-{disc_num}.yaml"
-          draft_path = f".teraflow/discovery/discussion-{disc_num}-draft.md"
+          summary_path = f".teraflow/discovery/discussion-{disc_num}-summary.yaml"
+          discussion_body = (os.environ.get("DISC_BODY") or "").strip()
+          latest_comment = (os.environ.get("LATEST_COMMENT") or "").strip()
+          skill_mode = (os.environ.get("SKILL_MODE") or "").strip()
+          doc_context_path = "/tmp/doc_context.txt"
+
+          def normalize_list(value):
+              if isinstance(value, list):
+                  out = []
+                  for item in value:
+                      text = str(item).strip()
+                      if text:
+                          out.append(text)
+                  return out
+              if isinstance(value, str):
+                  text = value.strip()
+                  return [text] if text else []
+              return []
+
+          summary = {
+              "confirmed": [],
+              "unresolved": [],
+              "context": [],
+              "next_focus": [],
+              "round_count": 0,
+          }
+          if os.path.exists(summary_path):
+              with open(summary_path, encoding="utf-8") as f:
+                  loaded = yaml.safe_load(f) or {}
+              if isinstance(loaded, dict):
+                  summary["confirmed"] = normalize_list(loaded.get("confirmed"))
+                  summary["unresolved"] = normalize_list(loaded.get("unresolved"))
+                  summary["context"] = normalize_list(loaded.get("context"))
+                  summary["next_focus"] = normalize_list(loaded.get("next_focus"))
+                  try:
+                      summary["round_count"] = int(loaded.get("round_count", 0))
+                  except Exception:
+                      summary["round_count"] = 0
+
+          doc_context = ""
+          if os.path.exists(doc_context_path):
+              with open(doc_context_path, encoding="utf-8") as f:
+                  doc_context = f.read().strip()
 
           parts = []
-          if os.path.exists(state_path):
-              with open(state_path, encoding="utf-8") as f:
-                  state = yaml.safe_load(f) or {}
-
-              def walk(nodes):
-                  for n in nodes or []:
-                      yield n
-                      for c in walk(n.get("children", [])):
-                          yield c
-
-              pending = []
-              for node in walk(state.get("tree", [])):
-                  if (node.get("status") or "").strip().lower() == "pending":
-                      pending.append({
-                          "id": node.get("id", ""),
-                          "question": node.get("question", ""),
-                          "category": node.get("category", ""),
-                          "recommendation": node.get("recommendation", ""),
-                          "depends_on": node.get("depends_on", []),
-                      })
-
-              parts.append(f"## 未解決分岐 ({len(pending)}件)")
-              parts.append(yaml.safe_dump(pending, allow_unicode=True, sort_keys=False))
-              summary = state.get("summary", {})
-              parts.append(f"進捗: {summary.get('answered',0)}/{summary.get('total',0)}")
-
-          if os.path.exists(draft_path):
-              with open(draft_path, encoding="utf-8") as f:
-                  parts.append("## 現在の CoDD ドラフト")
-                  parts.append(f.read())
-
+          parts.append("## Discussion 本文（初回投稿）")
+          parts.append(discussion_body)
+          parts.append("")
+          parts.append("## 構造化サマリ")
+          parts.append(yaml.safe_dump(summary, allow_unicode=True, sort_keys=False).rstrip())
+          parts.append("")
+          parts.append("## 既存ドキュメント参照")
+          parts.append(doc_context)
+          parts.append("")
+          parts.append("## 最新コメント")
+          parts.append(latest_comment)
+          parts.append("")
+          parts.append("## モード")
+          parts.append(skill_mode)
           print("\n".join(parts))
           PYEOF
-
-          {
-            echo "## Discussion タイトル"
-            echo "${{ github.event.discussion.title }}"
-            echo ""
-            echo "## Discussion 本文"
-            echo "${{ github.event.discussion.body }}"
-            echo ""
-            echo ""
-            echo "## モード"
-            echo "$SKILL_MODE"
-            echo ""
-            echo "## 最新コメント"
-            echo "${{ github.event.comment.body }}"
-          } >> /tmp/discovery_input.txt
 
           RC=0
           teraflow agent assign \
@@ -417,6 +558,7 @@ jobs:
           disc_num = os.environ.get("DISC_NUM", "")
           state_path = f".teraflow/discovery/discussion-{disc_num}.yaml"
           draft_path = f".teraflow/discovery/discussion-{disc_num}-draft.md"
+          summary_path = f".teraflow/discovery/discussion-{disc_num}-summary.yaml"
           skill_mode = (os.environ.get("SKILL_MODE") or "").strip().lower()
           disc_title = (os.environ.get("DISC_TITLE") or "").strip()
           disc_body = (os.environ.get("DISC_BODY") or "").strip()
@@ -668,6 +810,98 @@ jobs:
               with open(draft_path, "w", encoding="utf-8") as f:
                   f.write(f"# discovery draft #{disc_num}\n\n")
                   f.write(f"- progress: {s.get('answered',0)}/{s.get('total',0)} ({s.get('progress_percent',0)}%)\n")
+
+          def normalize_list(value):
+              if isinstance(value, list):
+                  out = []
+                  for item in value:
+                      text = str(item).strip()
+                      if text:
+                          out.append(text)
+                  return out
+              if isinstance(value, str):
+                  text = value.strip()
+                  return [text] if text else []
+              return []
+
+          existing_summary = {}
+          if os.path.exists(summary_path):
+              with open(summary_path, encoding="utf-8") as f:
+                  existing_summary = yaml.safe_load(f) or {}
+          if not isinstance(existing_summary, dict):
+              existing_summary = {}
+
+          confirmed = []
+          unresolved = []
+          for node in walk(tree):
+              if (node.get("category") or "").strip().lower() == "dialogue":
+                  continue
+              question = (node.get("question") or "").strip()
+              answer = (node.get("answer") or "").strip()
+              status = (node.get("status") or "").strip().lower()
+              if status == "resolved":
+                  status = "answered"
+              if status == "answered" and answer:
+                  if question:
+                      confirmed.append(f"{question}: {answer}")
+                  else:
+                      confirmed.append(answer)
+                  continue
+              if status in ("pending", "blocked", "skipped"):
+                  if question:
+                      unresolved.append(question)
+                  elif node.get("id"):
+                      unresolved.append(str(node.get("id")))
+
+          context = normalize_list(existing_summary.get("context"))
+          if disc_title:
+              title_line = f"Discussion: {disc_title}"
+              if title_line not in context:
+                  context.append(title_line)
+          if disc_body:
+              digest = ""
+              for ln in disc_body.splitlines():
+                  row = ln.strip()
+                  if not row:
+                      continue
+                  if row.startswith(("#", ">", "```")):
+                      continue
+                  digest = row
+                  break
+              if digest:
+                  body_line = f"初回投稿要約: {digest[:140]}"
+                  if body_line not in context:
+                      context.append(body_line)
+
+          next_focus = []
+          if isinstance(data.get("next_question"), dict):
+              nq_q = (data["next_question"].get("question") or "").strip()
+              nq_rec = (data["next_question"].get("recommendation") or "").strip()
+              if nq_q:
+                  focus = nq_q
+                  if nq_rec:
+                      focus = f"{nq_q} (推奨: {nq_rec})"
+                  next_focus.append(focus)
+          if not next_focus and unresolved:
+              next_focus.append(unresolved[0])
+
+          prev_round = existing_summary.get("round_count", 0)
+          try:
+              prev_round = int(prev_round)
+          except Exception:
+              prev_round = 0
+          round_count = prev_round + 1
+
+          structured_summary = {
+              "confirmed": list(dict.fromkeys(confirmed)),
+              "unresolved": list(dict.fromkeys(unresolved)),
+              "context": context,
+              "next_focus": next_focus,
+              "round_count": round_count,
+          }
+
+          with open(summary_path, "w", encoding="utf-8") as f:
+              yaml.safe_dump(structured_summary, f, allow_unicode=True, sort_keys=False)
 
           with open("/tmp/discovery_comment.txt", "w", encoding="utf-8") as f:
               f.write(comment if comment else "## 🔍 要件探索\n\n次の質問に進みます。")
