@@ -1,0 +1,81 @@
+version: '1'
+discussion_number: 51
+title: 📋 01-Requirements
+created_at: '2026-04-12T13:59:30.876281+00:00'
+mode: sequential
+tree:
+- id: dialogue.1776002370876
+  question: 要件探索の問いかけ
+  category: dialogue
+  status: answered
+  recommendation: ''
+  answer: '### 要件種別
+
+
+    システム要件
+
+
+    ### 優先度
+
+
+    Must（必須）
+
+
+    ### 背景・目的
+
+
+    teraflowリリースに向けてteraflowの公式サイトを作成する．
+
+
+    ### 要件詳細
+
+
+    初めて使うチュートリアルから，複雑な利用をする人までを想定したサイトにする
+
+
+    ### 受け入れ条件
+
+
+    おまかせ
+
+
+    ### 関連ステークホルダー
+
+
+    - [X] PM（プロダクトマネージャー）
+
+    - [ ] 開発チーム
+
+    - [ ] QAチーム
+
+    - [ ] エンドユーザー
+
+    - [ ] 運用チーム
+
+    - [ ] セキュリティチーム
+
+
+    ### 制約・前提条件
+
+
+    _No response_'
+  resolved_by: user
+  resolved_at: '2026-04-12T13:59:30.876302+00:00'
+  depends_on: []
+  children: []
+  meta:
+    skill_mode: init
+    discussion_title: 📋 01-Requirements
+    assistant_comment: '## 🔍 要件探索\n\n以下について教えてください：\n\n1. 対象ユーザーはどれですか？\n   a) 初心者  b)
+      中級者  c) 上級者  d) その他\n\n2. 提供するチュートリアルの形式は？\n   a) テキスト  b) 動画  c) インタラクティブ  d)
+      未定\n\n3. サイトの主な機能は何ですか？\n   a) ドキュメント  b) コミュニティフォーラム  c) サポート  d) その他\n\n>
+      記号で回答できます: 「1a 2b 3c」'
+    latest_user_comment: ''
+summary:
+  total: 0
+  answered: 0
+  pending: 0
+  skipped: 0
+  blocked: 0
+  progress_percent: 0
+updated_at: '2026-04-12T13:59:30.876394+00:00'
