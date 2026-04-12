@@ -98,7 +98,7 @@ jobs:
         run: |
 
           set -e
-          go install "github.com/taka-sho/teraflow@v0.5.8"
+          go install "github.com/taka-sho/teraflow@v0.5.9"
 
       - name: Collect PR diff
         env:
