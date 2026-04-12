@@ -38,7 +38,7 @@ jobs:
         run: |
 
           set -e
-          go install "github.com/taka-sho/teraflow@v0.5.16"
+          go install "github.com/taka-sho/teraflow@v0.5.17"
 
       - name: Pull latest state
         run: |
