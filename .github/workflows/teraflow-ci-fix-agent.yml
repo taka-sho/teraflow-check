@@ -121,7 +121,7 @@ jobs:
         run: |
 
           set -e
-          go install "github.com/taka-sho/teraflow@v0.5.11"
+          go install "github.com/taka-sho/teraflow@v0.5.12"
 
       - name: Collect CI failure logs
         env:
