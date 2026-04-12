@@ -1,0 +1,29 @@
+version: '1'
+discussion_number: 64
+title: '[E2E manual test]'
+created_at: '2026-04-12T16:11:25.502134+00:00'
+mode: sequential
+tree:
+- id: dialogue.1776010285502
+  question: 要件探索の実行に失敗しました。
+  category: dialogue
+  status: answered
+  recommendation: ''
+  answer: test
+  resolved_by: user
+  resolved_at: '2026-04-12T16:11:25.502153+00:00'
+  depends_on: []
+  children: []
+  meta:
+    skill_mode: init
+    discussion_title: '[E2E manual test]'
+    assistant_comment: 要件探索の実行に失敗しました。
+    latest_user_comment: ワークフロー復活テスト
+summary:
+  total: 0
+  answered: 0
+  pending: 0
+  skipped: 0
+  blocked: 0
+  progress_percent: 0
+updated_at: '2026-04-12T16:11:25.502233+00:00'
