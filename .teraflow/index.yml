@@ -1,0 +1,10 @@
+version: "1"
+generated_at: 2026-04-12T16:34:45.117167177Z
+entries:
+    - node_id: e2e_discovery_test_20260412
+      title: E2E Discovery Test - 要件定義
+      path: docs/システム要件/e2e_discovery_test_20260412.md
+      status: confirmed
+      updated_at: 2026-04-12T16:34:45.115427112Z
+      content_hash: 93d8a8adc560afb28e94a3c259d8347ddcecef31b8c6bc3e2c9a3e174d560d94
+      summary_available: false
