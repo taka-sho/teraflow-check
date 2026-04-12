@@ -1,0 +1,32 @@
+version: '1'
+discussion_number: 69
+title: '[trigger test]'
+created_at: '2026-04-12T16:31:40.349786+00:00'
+mode: sequential
+tree:
+- id: dialogue.1776011500349
+  question: 要件探索の問いかけ
+  category: dialogue
+  status: answered
+  recommendation: ''
+  answer: test
+  resolved_by: user
+  resolved_at: '2026-04-12T16:31:40.349810+00:00'
+  depends_on: []
+  children: []
+  meta:
+    skill_mode: init
+    discussion_title: '[trigger test]'
+    assistant_comment: '## 🔍 要件探索\n\n以下について教えてください：\n\n1. プロジェクトの種類はどれですか？\n   a)
+      製品開発  b) サービス提供  c) システム構築  d) その他\n\n2. 予算の範囲はどれですか？\n   a) 100万円未満  b) 100万-500万円  c)
+      500万以上  d) 未定\n\n3. プロジェクトの期限はどのくらいですか？\n   a) 1ヶ月以内  b) 1-3ヶ月  c) 3ヶ月以上  d)
+      未定\n\n> 記号で回答できます: 「1a 2b 3c」'
+    latest_user_comment: ''
+summary:
+  total: 0
+  answered: 0
+  pending: 0
+  skipped: 0
+  blocked: 0
+  progress_percent: 0
+updated_at: '2026-04-12T16:31:40.349885+00:00'

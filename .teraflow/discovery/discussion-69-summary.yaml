@@ -1,0 +1,8 @@
+confirmed: []
+unresolved: []
+context:
+- 'Discussion: [trigger test]'
+- '初回投稿要約: test'
+next_focus:
+- 'プロジェクトの種類はどれですか？ (推奨: 製品開発)'
+round_count: 1
