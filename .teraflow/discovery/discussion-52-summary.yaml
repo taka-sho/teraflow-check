@@ -4,5 +4,5 @@ context:
 - 'Discussion: [E2E Test] E2E Discovery Test - 20260412_235857'
 - '初回投稿要約: テストプロジェクトの要件定義を行いたい。'
 next_focus:
-- 'どの種類のユーザーが存在しますか？ (推奨: 一般ユーザーと管理者)'
-round_count: 2
+- 'ユーザーの種類はどれですか？ (推奨: 一般ユーザーと管理者)'
+round_count: 3
