@@ -107,6 +107,23 @@ tree:
     latest_user_comment: OK
     parsed_answers: []
     unparsed_portion: ''
+- id: dialogue.1776090773613
+  question: 対象ユーザーに関する要件を明確にする必要があります。
+  category: dialogue
+  status: answered
+  recommendation: ''
+  answer: 要求確定
+  resolved_by: user
+  resolved_at: '2026-04-13T14:32:53.613571+00:00'
+  depends_on: []
+  children: []
+  meta:
+    skill_mode: confirm
+    discussion_title: '[E2E Test] E2E Discovery Test - 20260413_232835'
+    assistant_comment: 対象ユーザーに関する要件を明確にする必要があります。
+    latest_user_comment: 要求確定
+    parsed_answers: []
+    unparsed_portion: ''
 summary:
   total: 0
   answered: 0
@@ -114,4 +131,4 @@ summary:
   skipped: 0
   blocked: 0
   progress_percent: 0
-updated_at: '2026-04-13T14:32:02.970683+00:00'
+updated_at: '2026-04-13T14:32:53.613577+00:00'
