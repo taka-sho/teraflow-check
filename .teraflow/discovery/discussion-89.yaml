@@ -112,6 +112,26 @@ tree:
       answer: MVP最小構成
       category: functional
     unparsed_portion: ''
+- id: dialogue.1776049549805
+  question: 以下について教えてください：
+  category: dialogue
+  status: answered
+  recommendation: ''
+  answer: 要求確定
+  resolved_by: user
+  resolved_at: '2026-04-13T03:05:49.805696+00:00'
+  depends_on: []
+  children: []
+  meta:
+    skill_mode: confirm
+    discussion_title: '[E2E Test] E2E Discovery Test - 20260413_120257'
+    assistant_comment: "## \U0001F50D 要件探索\n\n以下について教えてください：\n\n1. 対象ユーザーはどれですか？\n\
+      \   a) 社内利用者  b) 一般ユーザー  c) 管理者  d) その他\n\n2. 対応プラットフォームはどれですか？\n   a) Webのみ\
+      \  b) Web+API  c) モバイル含む  d) 未定\n\n3. 最優先で実装する範囲はどれですか？\n   a) MVP最小構成  b) 標準機能一式\
+      \  c) 拡張含む  d) 未定\n\n> 記号で回答できます: 「1a 2b 3c」"
+    latest_user_comment: 要求確定
+    parsed_answers: []
+    unparsed_portion: ''
 summary:
   total: 3
   answered: 3
@@ -119,4 +139,4 @@ summary:
   skipped: 0
   blocked: 0
   progress_percent: 100
-updated_at: '2026-04-13T03:04:51.973897+00:00'
+updated_at: '2026-04-13T03:05:49.805701+00:00'
