@@ -1,8 +1,11 @@
-confirmed: []
+confirmed:
+- '対象となるユーザーの種類: 管理者'
+- 'ユーザー認証の際に必要な情報: ユーザー名'
+- 'RBAC の階層はどのように設計しますか: 役割ベース'
 unresolved: []
 context:
 - 'Discussion: [E2E Test] E2E Discovery Test - 20260413_231909'
 - '初回投稿要約: テストプロジェクトの要件定義を行いたい。'
 next_focus:
-- '対象となるユーザーの種類は何ですか？ (推奨: 管理者と一般ユーザー)'
-round_count: 1
+- '対象ユーザーの種類は何ですか？ (推奨: 管理者と一般ユーザー)'
+round_count: 2
