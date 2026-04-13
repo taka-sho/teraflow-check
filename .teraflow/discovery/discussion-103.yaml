@@ -88,6 +88,26 @@ tree:
     latest_user_comment: 1a 2はJWTの有効期限を24時間にしたい 3b
     parsed_answers: []
     unparsed_portion: ''
+- id: dialogue.1776093598170
+  question: 以下について教えてください：
+  category: dialogue
+  status: answered
+  recommendation: ''
+  answer: 要求確定
+  resolved_by: user
+  resolved_at: '2026-04-13T15:19:58.170038+00:00'
+  depends_on: []
+  children: []
+  meta:
+    skill_mode: confirm
+    discussion_title: '[E2E Test] E2E Discovery Test - 20260414_001627'
+    assistant_comment: "## \U0001F50D 要件探索\n\n以下について教えてください：\n\n1. 対象ユーザーはどれですか？\n\
+      \   a) 管理者  b) オペレーター  c) 一般ユーザー  d) その他\n\n2. OAuth 2.0のフローはどれですか？\n   a) Authorization\
+      \ Code  b) Implicit  c) Client Credentials  d) その他\n\n3. ログイン後のリダイレクト先はどこですか？\n\
+      \   a) ダッシュボード  b) ホームページ  c) その他\n\n> 記号で回答できます: 「1a 2b 3c」"
+    latest_user_comment: 要求確定
+    parsed_answers: []
+    unparsed_portion: ''
 summary:
   total: 0
   answered: 0
@@ -95,4 +115,4 @@ summary:
   skipped: 0
   blocked: 0
   progress_percent: 0
-updated_at: '2026-04-13T15:19:01.322510+00:00'
+updated_at: '2026-04-13T15:19:58.170044+00:00'
