@@ -666,9 +666,8 @@ jobs:
 
           HELPERS_EOF
 
-      - name: Discovery grill-me response
+      - name: Discovery input preparation
         if: steps.check.outputs.has_key == 'true' && steps.rbac_check.outputs.allowed != 'False' && startsWith(steps.mode.outputs.mode, 'discovery')
-        id: discovery
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
@@ -819,6 +818,21 @@ jobs:
               echo '{"output":"要件探索の実行に失敗しました。"}' > /tmp/discovery_result.json
           fi
 
+          echo "SKILL_MODE=$SKILL_MODE" >> $GITHUB_ENV
+
+      - name: Discovery grill-me response
+        if: steps.check.outputs.has_key == 'true' && steps.rbac_check.outputs.allowed != 'False' && startsWith(steps.mode.outputs.mode, 'discovery')
+        id: discovery
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          MODE_OUTPUT: ${{ steps.mode.outputs.mode }}
+          DISC_NUM: ${{ github.event.discussion.number }}
+          DISC_TITLE: ${{ github.event.discussion.title }}
+          DISC_BODY: ${{ github.event.discussion.body }}
+          LATEST_COMMENT: ${{ github.event.comment.body }}
+        run: |
+          set -e
           python3 - <<'PYEOF'
           import json
           import os
