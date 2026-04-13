@@ -2,10 +2,13 @@ confirmed:
 - '認証フローはどれを使用しますか: Authorization Code Flow'
 - 'JWTトークンの有効期限はどのくらいにしますか: 1日'
 - '管理者ダッシュボードの独自機能は必要: はい'
+- 'OAuth 2.0のフローモード: Authorization Code Flow'
+- 'JWTの有効期限はどれにしますか: JWTの有効期限を24時間にしたい'
+- 'RBACのロールはどれを考えていますか: 一般ユーザー'
 unresolved: []
 context:
 - 'Discussion: [E2E Test] E2E Discovery Test - 20260414_001143'
 - '初回投稿要約: テストプロジェクトの要件定義を行いたい。'
 next_focus:
-- 'OAuth 2.0のフローモードはどれですか？ (推奨: Authorization Code Flow)'
-round_count: 2
+- 'Phase 1での具体的な要件は何ですか？ (推奨: ログイン・ログアウト機能)'
+round_count: 3
