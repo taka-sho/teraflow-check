@@ -13,3 +13,4 @@
 {"type":"chore","message":"restore 1198-line workflow for bisect test [cmd219]","timestamp":"2026-04-13T01:48:53Z"}
 {"type":"chore","message":"add Post confirmed-empty warning step only [cmd219]","timestamp":"2026-04-13T01:58:04Z"}
 {"type":"chore","message":"add guard_docgen step only [cmd219]","timestamp":"2026-04-13T01:59:19Z"}
+{"type":"chore","message":"test full 1527-line T8-fixed version [cmd219]","timestamp":"2026-04-13T02:00:26Z"}
