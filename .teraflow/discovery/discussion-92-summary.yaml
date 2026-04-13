@@ -9,5 +9,5 @@ context:
 - 'Discussion: [E2E Test] E2E Discovery Test - 20260413_230146'
 - '初回投稿要約: テストプロジェクトの要件定義を行いたい。'
 next_focus:
-- '認証フローの種類は何ですか？ (推奨: OAuth 2.0)'
-round_count: 4
+- '追加の認証要件はありますか？ (推奨: 2FAなど)'
+round_count: 5
