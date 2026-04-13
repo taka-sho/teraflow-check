@@ -1,0 +1,11 @@
+confirmed: []
+unresolved:
+- 対象ユーザーはどれですか？
+- 対応プラットフォームはどれですか？
+- 最優先で実装する範囲はどれですか？
+context:
+- 'Discussion: [Workflow Test] 104459'
+- '初回投稿要約: ワークフロートリガーテスト'
+next_focus:
+- '対象ユーザーはどれですか？ (推奨: 社内利用者)'
+round_count: 1
