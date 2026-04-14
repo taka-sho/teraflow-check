@@ -111,11 +111,60 @@ tree:
       補足: OAuthはGoogle優先、JWTは24時間運用を想定します。'
     parsed_answers: []
     unparsed_portion: ''
+- id: feature.password_reset
+  question: ''
+  category: ''
+  status: answered
+  children: []
+  answer: ''
+  resolved_by: user
+  resolved_at: '2026-04-14T05:34:31.750517+00:00'
+- id: user.notification.method
+  question: ''
+  category: ''
+  status: answered
+  children: []
+  answer: ''
+  resolved_by: user
+  resolved_at: '2026-04-14T05:34:31.750522+00:00'
+- id: rbac.granularity
+  question: ''
+  category: ''
+  status: answered
+  children: []
+  answer: ''
+  resolved_by: user
+  resolved_at: '2026-04-14T05:34:31.750526+00:00'
+- id: dialogue.1776144871750
+  question: 全ての確認事項が確定しました。次に追加機能について伺います。
+  category: dialogue
+  status: answered
+  recommendation: ''
+  answer: '最終回答です。
+
+    1a 2a 3c
+
+    要件確定に進めてください。'
+  resolved_by: user
+  resolved_at: '2026-04-14T05:34:31.750536+00:00'
+  depends_on: []
+  children: []
+  meta:
+    skill_mode: dialogue
+    discussion_title: '[E2E Test] E2E Discovery Test - 20260414_143118'
+    assistant_comment: 全ての確認事項が確定しました。次に追加機能について伺います。
+    latest_user_comment: '最終回答です。
+
+      1a 2a 3c
+
+      要件確定に進めてください。'
+    parsed_answers: []
+    unparsed_portion: ''
 summary:
-  total: 0
-  answered: 0
+  total: 3
+  answered: 3
   pending: 0
   skipped: 0
   blocked: 0
-  progress_percent: 0
-updated_at: '2026-04-14T05:33:44.137138+00:00'
+  progress_percent: 100
+updated_at: '2026-04-14T05:34:31.750624+00:00'
