@@ -111,6 +111,31 @@ tree:
       補足: OAuthはGoogle優先、JWTは24時間運用を想定します。'
     parsed_answers: []
     unparsed_portion: ''
+- id: dialogue.1776158155800
+  question: 全ての要件が確定しました。要件定義が完了しました。
+  category: dialogue
+  status: answered
+  recommendation: ''
+  answer: '最終回答です。
+
+    1a 2a 3c
+
+    要件確定に進めてください。'
+  resolved_by: user
+  resolved_at: '2026-04-14T09:15:55.800285+00:00'
+  depends_on: []
+  children: []
+  meta:
+    skill_mode: dialogue
+    discussion_title: '[E2E Test] E2E Discovery Test - 20260414_180025'
+    assistant_comment: 全ての要件が確定しました。要件定義が完了しました。
+    latest_user_comment: '最終回答です。
+
+      1a 2a 3c
+
+      要件確定に進めてください。'
+    parsed_answers: []
+    unparsed_portion: ''
 summary:
   total: 0
   answered: 0
@@ -125,4 +150,4 @@ fulfillment:
   recommended_total: 0
   recommended_fulfilled: 0
   missing_required_ids: []
-updated_at: '2026-04-14T09:09:09.095777+00:00'
+updated_at: '2026-04-14T09:15:55.800382+00:00'
