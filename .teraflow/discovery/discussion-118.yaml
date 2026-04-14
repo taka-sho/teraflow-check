@@ -111,18 +111,70 @@ tree:
       補足: OAuthはGoogle優先、JWTは24時間運用を想定します。'
     parsed_answers: []
     unparsed_portion: ''
+- id: phase1.login_required
+  question: ''
+  category: ''
+  status: answered
+  children: []
+  answer: ''
+  resolved_by: user
+  resolved_at: '2026-04-14T06:27:18.088806+00:00'
+- id: phase2.rbac_required
+  question: ''
+  category: ''
+  status: answered
+  children: []
+  answer: ''
+  resolved_by: user
+  resolved_at: '2026-04-14T06:27:18.088811+00:00'
+- id: user_settings_needed
+  question: ''
+  category: ''
+  status: answered
+  children: []
+  answer: ''
+  resolved_by: user
+  resolved_at: '2026-04-14T06:27:18.088815+00:00'
+- id: dialogue.1776148038088
+  question: 全ての要件が確定しました。ユーザー認証機能の要件定義が完了しました。
+  category: dialogue
+  status: answered
+  recommendation: ''
+  answer: '最終回答です。
+
+    1a 2a 3c
+
+    要件確定に進めてください。'
+  resolved_by: user
+  resolved_at: '2026-04-14T06:27:18.088826+00:00'
+  depends_on: []
+  children: []
+  meta:
+    skill_mode: dialogue
+    discussion_title: '[E2E Test] E2E Discovery Test - 20260414_152407'
+    assistant_comment: 全ての要件が確定しました。ユーザー認証機能の要件定義が完了しました。
+    latest_user_comment: '最終回答です。
+
+      1a 2a 3c
+
+      要件確定に進めてください。'
+    parsed_answers: []
+    unparsed_portion: ''
 summary:
-  total: 0
-  answered: 0
+  total: 3
+  answered: 3
   pending: 0
   skipped: 0
   blocked: 0
-  progress_percent: 0
+  progress_percent: 100
 fulfillment:
-  map: {}
+  map:
+    phase1.login_required: false
+    phase2.rbac_required: false
+    user_settings_needed: false
   required_total: 0
   required_fulfilled: 0
   recommended_total: 0
   recommended_fulfilled: 0
   missing_required_ids: []
-updated_at: '2026-04-14T06:26:33.704729+00:00'
+updated_at: '2026-04-14T06:27:18.088922+00:00'
