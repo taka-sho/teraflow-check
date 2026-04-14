@@ -67,6 +67,26 @@ tree:
     latest_user_comment: 1a 2b 3a
     parsed_answers: []
     unparsed_portion: ''
+- id: dialogue.1776130081405
+  question: 以下について教えてください：
+  category: dialogue
+  status: answered
+  recommendation: ''
+  answer: 1a 2はJWTの有効期限を24時間にしたい 3b
+  resolved_by: user
+  resolved_at: '2026-04-14T01:28:01.405165+00:00'
+  depends_on: []
+  children: []
+  meta:
+    skill_mode: dialogue
+    discussion_title: '[E2E Test] E2E Discovery Test - 20260414_102540'
+    assistant_comment: "## \U0001F50D 要件探索\n\n以下について教えてください：\n\n1. 対象ユーザーはどれですか？\n\
+      \   a) 管理者  b) 一般ユーザー  c) 開発者  d) その他\n\n2. ログイン方式は何ですか？\n   a) ユーザー名とパスワード\
+      \  b) SNSアカウント  c) その他\n\n3. RBACのロールは何ですか？\n   a) 管理者  b) ユーザー  c) ゲスト  d)\
+      \ その他\n\n> 記号で回答できます: 「1a 2b 3c」"
+    latest_user_comment: 1a 2はJWTの有効期限を24時間にしたい 3b
+    parsed_answers: []
+    unparsed_portion: ''
 summary:
   total: 0
   answered: 0
@@ -74,4 +94,4 @@ summary:
   skipped: 0
   blocked: 0
   progress_percent: 0
-updated_at: '2026-04-14T01:27:07.143179+00:00'
+updated_at: '2026-04-14T01:28:01.405289+00:00'

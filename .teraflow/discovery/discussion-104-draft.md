@@ -1,3 +1,1 @@
-# discovery draft #104
-
-- progress: 0/0 (0%)
+JWTの有効期限を24時間に設定
