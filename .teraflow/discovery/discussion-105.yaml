@@ -87,6 +87,26 @@ tree:
     latest_user_comment: OK
     parsed_answers: []
     unparsed_portion: ''
+- id: dialogue.1776131154737
+  question: 以下について教えてください：
+  category: dialogue
+  status: answered
+  recommendation: ''
+  answer: 要求確定
+  resolved_by: user
+  resolved_at: '2026-04-14T01:45:54.737865+00:00'
+  depends_on: []
+  children: []
+  meta:
+    skill_mode: confirm
+    discussion_title: '[E2E Test] E2E Discovery Test - 20260414_104119'
+    assistant_comment: "## \U0001F50D 要件探索\n\n以下について教えてください：\n\n1. OAuth 2.0のスコープはどれですか？\n\
+      \   a) read  b) write  c) both  d) その他\n\n2. ユーザー管理の機能は必要ですか？\n   a) はい  b)\
+      \ いいえ  c) 後で決める\n\n3. RBACの階層はどのように構成しますか？\n   a) 一層  b) 二層  c) 三層以上  d) 未定\n\
+      \n> 記号で回答できます: 「1a 2b 3c」"
+    latest_user_comment: 要求確定
+    parsed_answers: []
+    unparsed_portion: ''
 summary:
   total: 0
   answered: 0
@@ -94,4 +114,4 @@ summary:
   skipped: 0
   blocked: 0
   progress_percent: 0
-updated_at: '2026-04-14T01:45:00.125969+00:00'
+updated_at: '2026-04-14T01:45:54.737870+00:00'
