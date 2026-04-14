@@ -68,6 +68,26 @@ tree:
     latest_user_comment: 1a 2a 3b
     parsed_answers: []
     unparsed_portion: ''
+- id: dialogue.1776142300838
+  question: 以下について教えてください：
+  category: dialogue
+  status: answered
+  recommendation: ''
+  answer: 1a 2c 3b
+  resolved_by: user
+  resolved_at: '2026-04-14T04:51:40.838197+00:00'
+  depends_on: []
+  children: []
+  meta:
+    skill_mode: dialogue
+    discussion_title: 📋 01-Requirements
+    assistant_comment: "## \U0001F50D 要件探索\n\n以下について教えてください：\n\n1. 使用するフレームワークは何ですか？\n\
+      \   a) React  b) Vue  c) Angular  d) 未定\n\n2. どの範囲までを初心者向けにしますか？\n   a) 完全なマニュアル\
+      \  b) チュートリアル動画  c) FAQ  d) その他\n\n3. サポート体制はどう考えていますか？\n   a) フォーラム  b) FAQ\
+      \  c) チャットサポート  d) その他\n\n> 記号で回答できます: 「1a 2b 3c」"
+    latest_user_comment: 1a 2c 3b
+    parsed_answers: []
+    unparsed_portion: ''
 summary:
   total: 0
   answered: 0
@@ -75,4 +95,4 @@ summary:
   skipped: 0
   blocked: 0
   progress_percent: 0
-updated_at: '2026-04-14T04:50:43.691961+00:00'
+updated_at: '2026-04-14T04:51:40.838296+00:00'
