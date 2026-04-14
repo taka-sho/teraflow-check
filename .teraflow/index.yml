@@ -1,0 +1,10 @@
+version: "1"
+generated_at: 2026-04-14T04:54:53.081495418Z
+entries:
+    - node_id: 01_requirements
+      title: teraflow公式サイト要件定義
+      path: docs/システム要件/01_requirements.md
+      status: draft
+      updated_at: 2026-04-14T04:54:53.079697888Z
+      content_hash: 720edc5dd720ab13685cc202702a4744b5161ea93b19853d5ff042d7a78865b0
+      summary_available: false
