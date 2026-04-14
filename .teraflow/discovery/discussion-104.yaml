@@ -87,6 +87,26 @@ tree:
     latest_user_comment: 1a 2はJWTの有効期限を24時間にしたい 3b
     parsed_answers: []
     unparsed_portion: ''
+- id: dialogue.1776130135674
+  question: 以下について教えてください：
+  category: dialogue
+  status: answered
+  recommendation: ''
+  answer: 要求確定
+  resolved_by: user
+  resolved_at: '2026-04-14T01:28:55.674431+00:00'
+  depends_on: []
+  children: []
+  meta:
+    skill_mode: confirm
+    discussion_title: '[E2E Test] E2E Discovery Test - 20260414_102540'
+    assistant_comment: "## \U0001F50D 要件探索\n\n以下について教えてください：\n\n1. 対象ユーザーはどれですか？\n\
+      \   a) 管理者  b) 一般ユーザー  c) 他の役割  d) その他\n\n2. 認証方法はどれを使用しますか？\n   a) OAuth 2.0\
+      \  b) JWT  c) 両方  d) 他の方法\n\n3. 権限管理の範囲はどこまでですか？\n   a) ユーザー管理  b) コンテンツ管理 \
+      \ c) 双方  d) 不明\n\n> 記号で回答できます: 「1a 2b 3c」"
+    latest_user_comment: 要求確定
+    parsed_answers: []
+    unparsed_portion: ''
 summary:
   total: 0
   answered: 0
@@ -94,4 +114,4 @@ summary:
   skipped: 0
   blocked: 0
   progress_percent: 0
-updated_at: '2026-04-14T01:28:01.405289+00:00'
+updated_at: '2026-04-14T01:28:55.674436+00:00'
