@@ -160,6 +160,26 @@ tree:
       要件確定に進めてください。'
     parsed_answers: []
     unparsed_portion: ''
+- id: dialogue.1776144927951
+  question: 以下について教えてください：
+  category: dialogue
+  status: answered
+  recommendation: ''
+  answer: 要求確定
+  resolved_by: user
+  resolved_at: '2026-04-14T05:35:27.951103+00:00'
+  depends_on: []
+  children: []
+  meta:
+    skill_mode: confirm
+    discussion_title: '[E2E Test] E2E Discovery Test - 20260414_143118'
+    assistant_comment: "## \U0001F50D 要件探索\n\n以下について教えてください：\n\n1. 権限管理の対象はどれですか？\n\
+      \   a) ユーザーグループ  b) 各ユーザー  c) ロール  d) その他\n\n2. 追加で必要な機能は何ですか？\n   a) ユーザーアクティビティログ\
+      \  b) 監査トレイル  c) 他の機能  d) 特にない\n\n3. 認証時のセキュリティ要件はどのようにしますか？\n   a) 多要素認証  b)\
+      \ パスワード強度設定  c) IP制限  d) 特にない\n\n> 記号で回答できます: 「1a 2b 3c」"
+    latest_user_comment: 要求確定
+    parsed_answers: []
+    unparsed_portion: ''
 summary:
   total: 3
   answered: 3
@@ -167,4 +187,4 @@ summary:
   skipped: 0
   blocked: 0
   progress_percent: 100
-updated_at: '2026-04-14T05:34:31.750624+00:00'
+updated_at: '2026-04-14T05:35:27.951108+00:00'
