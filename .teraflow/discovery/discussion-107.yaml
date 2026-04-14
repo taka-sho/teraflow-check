@@ -128,6 +128,26 @@ tree:
     latest_user_comment: 1a 2ab 3a
     parsed_answers: []
     unparsed_portion: ''
+- id: dialogue.1776142480034
+  question: 以下について教えてください：
+  category: dialogue
+  status: answered
+  recommendation: ''
+  answer: 要求確定
+  resolved_by: user
+  resolved_at: '2026-04-14T04:54:40.034804+00:00'
+  depends_on: []
+  children: []
+  meta:
+    skill_mode: confirm
+    discussion_title: 📋 01-Requirements
+    assistant_comment: "## \U0001F50D 要件探索\n\n以下について教えてください：\n\n1. ステークホルダーの参加はどのようになりますか？\n\
+      \   a) 必要な全員  b) 一部  c) 不要  d) 未定\n\n2. テストの進行はどのように行いますか？\n   a) 自動  b) 手動\
+      \  c) 両方  d) 未定\n\n3. サイトはどのプラットフォームに対応しますか？\n   a) PC  b) スマホ  c) 両方  d) 未定\n\
+      \n> 記号で回答できます: 「1a 2b 3c」"
+    latest_user_comment: 要求確定
+    parsed_answers: []
+    unparsed_portion: ''
 summary:
   total: 0
   answered: 0
@@ -135,4 +155,4 @@ summary:
   skipped: 0
   blocked: 0
   progress_percent: 0
-updated_at: '2026-04-14T04:53:52.025883+00:00'
+updated_at: '2026-04-14T04:54:40.034810+00:00'
